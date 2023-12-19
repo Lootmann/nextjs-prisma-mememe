@@ -23,5 +23,9 @@ export async function POST(request: NextResponse) {
 }
 
 const getAllProblems = async () => {
-  return await prisma.problem.findMany();
+  return await prisma.problem.findMany({
+    include: {
+      deck: true,
+    },
+  });
 };
