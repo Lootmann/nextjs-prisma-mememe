@@ -5,12 +5,16 @@ import React from "react";
 
 type Props = {
   params: {
-    deckId: string;
+    id: string;
   };
 };
 
 export default function Page({ params }: Props) {
-  const [deck, setDeck] = React.useState<DeckType>();
+  const [deck, setDeck] = React.useState<DeckType>({
+    id: 0,
+    statement: "",
+    answer: "",
+  });
 
   React.useEffect(() => {
     const fetchDecks = async () => {
@@ -19,8 +23,9 @@ export default function Page({ params }: Props) {
         "Content-Type": "application/json",
       };
 
-      const resp = await fetch("/api/decks/1", options);
+      const resp = await fetch(`/api/decks/${params.id}`, options);
       const data = await resp.json();
+
       setDeck(data);
     };
 
@@ -29,9 +34,10 @@ export default function Page({ params }: Props) {
 
   return (
     <div>
-      <h2>{params.deckId}</h2>
-      <p>{deck?.statement}</p>
-      <p>{deck?.answer}</p>
+      <h2>ID: {params.id}</h2>
+
+      <p>{deck.statement}</p>
+      <p>{deck.answer}</p>
     </div>
   );
 }
