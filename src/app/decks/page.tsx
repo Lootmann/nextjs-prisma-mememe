@@ -10,7 +10,7 @@ const table_row = `border px-2 py-1`;
 export default function Page({ children }: { children: React.ReactDOM }) {
   const [decks, setDecks] = React.useState<DeckType[]>([]);
   const [refresh, setRefresh] = React.useState<boolean>(false);
-  const { register, handleSubmit } = useForm<DeckType>();
+  const { register, handleSubmit, reset } = useForm<DeckType>();
 
   const onSubmit: SubmitHandler<DeckType> = async (data) => {
     const options = {
@@ -24,6 +24,7 @@ export default function Page({ children }: { children: React.ReactDOM }) {
     console.log(resp);
 
     setRefresh(!refresh);
+    reset({ statement: "", answer: "" });
   };
 
   React.useEffect(() => {
@@ -40,7 +41,7 @@ export default function Page({ children }: { children: React.ReactDOM }) {
     };
 
     fetchDecks();
-  }, [refresh]);
+  }, [refresh, reset]);
 
   return (
     <div className="h-full w-full flex flex-col gap-4 text-xl">
@@ -101,10 +102,6 @@ export default function Page({ children }: { children: React.ReactDOM }) {
             ))}
           </tbody>
         </table>
-
-        <ul>
-          <li></li>
-        </ul>
       </div>
     </div>
   );
