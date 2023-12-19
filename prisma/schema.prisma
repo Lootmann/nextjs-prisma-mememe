@@ -8,10 +8,9 @@ datasource db {
 }
 
 model Deck {
-  id        Int       @id @default(autoincrement())
-  statement String
-  answer    String
-  Problem   Problem[]
+  id      Int       @id @default(autoincrement())
+  title   String
+  Problem Problem[]
 }
 
 model Problem {
