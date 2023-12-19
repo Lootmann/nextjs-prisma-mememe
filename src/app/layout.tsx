@@ -19,10 +19,12 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
-      <body className={`${inter.className} antialiased flex flex-col`}>
+    <html lang="en" className="h-full w-full">
+      <body
+        className={`${inter.className} antialiased flex flex-col h-full w-full`}
+      >
         <Header />
-        <main className="p-4">{children}</main>
+        <main className="p-4 h-full w-full">{children}</main>
       </body>
     </html>
   );
