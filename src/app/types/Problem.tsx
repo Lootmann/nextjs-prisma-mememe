@@ -4,3 +4,9 @@ export type ProblemType = {
   back: string;
   deckId: number;
 };
+
+export type ProblemInputType = {
+  front: string;
+  back: string;
+  deckId: number;
+};
