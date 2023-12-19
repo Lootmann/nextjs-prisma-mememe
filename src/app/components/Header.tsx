@@ -7,7 +7,6 @@ export function Header() {
         <Link href={"/"}>Top</Link>
         <Link href={"/add/"}>Add</Link>
         <Link href={"/decks/"}>Decks</Link>
-        <Link href={""}>Top</Link>
       </nav>
     </header>
   );
