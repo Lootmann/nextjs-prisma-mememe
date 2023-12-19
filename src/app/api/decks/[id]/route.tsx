@@ -12,5 +12,5 @@ export async function GET(
 }
 
 const getDeckById = async (deckId: number) => {
-  return await prisma.decks.findFirst({ where: { id: deckId } });
+  return await prisma.deck.findFirst({ where: { id: deckId } });
 };

@@ -11,7 +11,7 @@ export async function GET() {
 export async function POST(request: NextResponse) {
   const { statement, answer } = await request.json();
 
-  await prisma.decks.create({
+  await prisma.deck.create({
     data: {
       statement: statement,
       answer: answer,
@@ -23,5 +23,5 @@ export async function POST(request: NextResponse) {
 }
 
 const getAllDecks = async () => {
-  return await prisma.decks.findMany();
+  return await prisma.deck.findMany();
 };
