@@ -22,7 +22,20 @@ export default function Add() {
   const { register, handleSubmit, reset } = useForm<ProblemInputType>();
 
   const onSubmit: SubmitHandler<ProblemInputType> = async (data) => {
-    console.log(data);
+    const options = {
+      method: "POST",
+      "Content-Type": "application/json",
+      body: JSON.stringify({
+        front: data.front,
+        back: data.back,
+        deckId: data.deckId,
+      }),
+    };
+
+    const resp = await fetch("/api/problems", options);
+    const res = await resp.json();
+    console.log(resp);
+    console.log(res);
   };
 
   React.useEffect(() => {
