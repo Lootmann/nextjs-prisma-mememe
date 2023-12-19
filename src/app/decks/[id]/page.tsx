@@ -12,8 +12,7 @@ type Props = {
 export default function Page({ params }: Props) {
   const [deck, setDeck] = React.useState<DeckType>({
     id: 0,
-    statement: "",
-    answer: "",
+    title: "",
   });
 
   React.useEffect(() => {
@@ -36,8 +35,7 @@ export default function Page({ params }: Props) {
     <div>
       <h2>ID: {params.id}</h2>
 
-      <p>{deck.statement}</p>
-      <p>{deck.answer}</p>
+      <p>{deck.title}</p>
     </div>
   );
 }
