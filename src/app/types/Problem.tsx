@@ -1,8 +1,10 @@
+import { DeckType } from "./Deck";
+
 export type ProblemType = {
   id: number;
   front: string;
   back: string;
-  deckId: number;
+  deck: DeckType;
 };
 
 export type ProblemInputType = {
