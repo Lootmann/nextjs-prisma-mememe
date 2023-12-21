@@ -13,7 +13,7 @@ const label = `px-2 py-1 w-18`;
 const input = `
   py-1 px-2 text-xl border rounded-md
   flex-1 grow
-  text-neutral-200 bg-neutral-900 border-neutral-900
+  text-neutral-200 bg-neutral-800 border-neutral-900
   focus:border-neutral-300
   outline-none`;
 
@@ -63,7 +63,7 @@ export default function Add() {
     <div className="h-full p-4 flex flex-col gap-6 border rounded-md text-xl">
       <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-4">
         <div className={`${field}`}>
-          <label className={`${label}`}>label</label>
+          <label className={`${label}`}>Deck</label>
           <select {...register("deckId")} className={`${input} bg-lime-900`}>
             {decks.map((deck) => (
               <option key={deck.id} value={`${deck.id}`}>
