@@ -55,7 +55,7 @@ export default function Page() {
               <td className={table_row}>{prob.front}</td>
               <td className={table_row}>{prob.back}</td>
               <td className={table_row}>
-                <Link href="/" className={`${link}`}>
+                <Link href={`problems/${prob.id}`} className={`${link}`}>
                   edit
                 </Link>
               </td>
