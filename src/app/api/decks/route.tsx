@@ -1,26 +1,14 @@
-import { PrismaClient } from "@prisma/client";
-import { NextResponse } from "next/server";
+import { createDeck, getDecks } from "@/app/crud/deck";
+import { NextRequest, NextResponse } from "next/server";
 
-const prisma = new PrismaClient();
-
-export async function GET() {
-  const decks = await getAllDecks();
+export async function GET(req: NextRequest) {
+  const decks = await getDecks();
   return NextResponse.json(decks);
 }
 
-export async function POST(request: NextResponse) {
-  const { title } = await request.json();
-
-  await prisma.deck.create({
-    data: {
-      title: title,
-    },
-  });
-
-  const decks = await getAllDecks();
+export async function POST(req: NextRequest) {
+  const { title } = await req.json();
+  await createDeck(title);
+  const decks = await getDecks();
   return NextResponse.json(decks);
 }
-
-const getAllDecks = async () => {
-  return await prisma.deck.findMany();
-};
