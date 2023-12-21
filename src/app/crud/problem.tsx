@@ -28,6 +28,20 @@ export const getRandomProblemByDeck = async (deckId: string) => {
   }
 };
 
+export const createProblem = async (
+  front: string,
+  back: string,
+  deckId: string
+) => {
+  return await prisma.problem.create({
+    data: {
+      front: front,
+      back: back,
+      deckId: Number(deckId),
+    },
+  });
+};
+
 export const putProblem = async (id: string, front: string, back: string) => {
   return await prisma.problem.update({
     where: { id: Number(id) },
