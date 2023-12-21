@@ -12,3 +12,10 @@ export type ProblemInputType = {
   back: string;
   deckId: number;
 };
+
+export type ProblemLearnType = {
+  id: number;
+  front: string;
+  back: string;
+  deckId: number;
+};
