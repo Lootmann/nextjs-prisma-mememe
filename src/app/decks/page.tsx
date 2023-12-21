@@ -51,7 +51,9 @@ export default function Home() {
       <div className={`${inner}`}>
         {decks.map((deck) => (
           <div key={deck.id} className={`${deck_row}`}>
-            <p className="grow">{deck.title}</p>
+            <Link href={`/learn/${deck.id}`} className="grow">
+              {deck.title}
+            </Link>
             <p>problems</p>
             <p>edit</p>
             <p>delete</p>
