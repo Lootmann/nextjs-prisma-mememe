@@ -4,13 +4,9 @@
 "use client";
 
 import { ProblemLearnType } from "@/app/types/Problem";
+import Link from "next/link";
+import { useParams } from "next/navigation";
 import React from "react";
-
-type LearnIdProps = {
-  params: {
-    id: string;
-  };
-};
 
 const header = `
     w-full flex px-4 py-1 gap-4
@@ -28,13 +24,16 @@ const footer = `
     bg-slate-800
     border rounded-md`;
 
-export default function Page({ params }: LearnIdProps) {
+export default function Page() {
   const [problem, setProblem] = React.useState<ProblemLearnType>({
     id: 0,
     front: "",
     back: "",
     deckId: 0,
   });
+
+  // note: get url params '/learn/:deckId'
+  const params = useParams();
 
   const [isFlip, setIsFlip] = React.useState<boolean>(false);
 
@@ -45,18 +44,18 @@ export default function Page({ params }: LearnIdProps) {
         "Content-Type": "application/json",
       };
 
-      const resp = await fetch(`/api/problems/${params.id}`, options);
+      const resp = await fetch(`/api/problems/${params.id}/random`, options);
 
       if (!resp.ok) {
         // fixme: validation error
       }
-      const data = await resp.json();
 
+      const data = await resp.json();
       setProblem(data);
     };
 
     fetchProblem();
-  }, []);
+  }, [params]);
 
   return (
     <div className="h-full w-full gap-4 flex flex-col items-center">
@@ -80,7 +79,7 @@ export default function Page({ params }: LearnIdProps) {
       </div>
 
       <footer className={`${footer}`}>
-        <p>link: api/learn/{problem.deckId}</p>
+        <Link href={`/learn/${problem.deckId}`}>Next</Link>
       </footer>
     </div>
   );
