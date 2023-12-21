@@ -13,6 +13,7 @@ export default function Page({ params }: Props) {
   const [deck, setDeck] = React.useState<DeckType>({
     id: 0,
     title: "",
+    problems: [],
   });
 
   React.useEffect(() => {
