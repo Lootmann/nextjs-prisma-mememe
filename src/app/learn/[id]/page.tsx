@@ -38,6 +38,8 @@ export default function Page() {
   const [isFlip, setIsFlip] = React.useState<boolean>(false);
 
   React.useEffect(() => {
+    setIsFlip(false);
+
     const fetchProblem = async () => {
       const options = {
         method: "GET",
