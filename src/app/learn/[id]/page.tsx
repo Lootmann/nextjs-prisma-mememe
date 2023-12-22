@@ -9,18 +9,17 @@ import { useParams } from "next/navigation";
 import React from "react";
 
 const header = `
-    w-full flex px-4 py-1 gap-4
+    w-full flex justify-center px-4 py-1 gap-4
     bg-slate-800
     border rounded-md`;
 
 const statement = `
-    text-xl
-    px-4 py-2
-    w-full flex-1 grow
+    text-xl px-4 py-2
+    w-full flex flex-col flex-1 grow gap-4
     border rounded-md`;
 
 const footer = `
-    w-full flex px-4 py-1
+    w-full flex justify-center px-4 py-1
     bg-slate-800
     border rounded-md`;
 
@@ -32,7 +31,7 @@ export default function Page() {
     deckId: 0,
   });
 
-  // note: get url params '/learn/:deckId'
+  // get url params '/learn/:deckId'
   const params = useParams();
 
   const [isFlip, setIsFlip] = React.useState<boolean>(false);
@@ -72,7 +71,6 @@ export default function Page() {
             <p className="text-xl">{problem.front}</p>
             {isFlip && (
               <>
-                <hr className="border-neutral-500" />
                 <p className="text-xl">{problem.back}</p>
               </>
             )}
