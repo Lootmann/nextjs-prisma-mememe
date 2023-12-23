@@ -14,7 +14,6 @@ show problem, answer it.
   - [x] DEL /problems/:problemId
 
 - /decks
-
   - [x] GET /decks
   - [x] GET /decks/:deckId
   - [x] POST /decks
