@@ -6,6 +6,7 @@
 import React from "react";
 import Link from "next/link";
 import { DeckType } from "../../types/Deck";
+import { CreateDeck } from "@/components/decks/CreateDeck";
 
 const inner = `py-4 px-8
   h-full w-full flex flex-col flex-1 grow items-stretch
@@ -20,7 +21,7 @@ const link = `
   hover:bg-sky-300 hover:text-neutral-900 rounded-md duration-200`;
 
 const footer = `py-4 px-8
-  w-full flex gap-4
+  w-full flex gap-4 justify-center
   border border-neutral-200 rounded-md`;
 
 const button = `p-2 text-xl text-bold
@@ -29,17 +30,28 @@ const button = `p-2 text-xl text-bold
 
 export default function Home() {
   const [decks, setDecks] = React.useState<DeckType[]>([]);
+  const [showCreateDeck, setShowCreateDeck] = React.useState<boolean>(false);
+  const [refresh, setRefresh] = React.useState<boolean>(false);
+
+  const toggleRefresh = () => {
+    setRefresh(!refresh);
+  };
+
+  const handleShowCreateDeck = () => {
+    setShowCreateDeck(false);
+  };
 
   React.useEffect(() => {
     const fetchDecks = async () => {
       const options = {
         method: "GET",
-        "Content-Type": "application/json",
+        headers: { "Content-Type": "application/json" },
       };
 
       const resp = await fetch("/api/decks", options);
       const data = await resp.json();
 
+      // fixme: validation createDeck
       if (!resp.ok) {
         console.log(data);
       }
@@ -48,7 +60,7 @@ export default function Home() {
     };
 
     fetchDecks();
-  }, []);
+  }, [refresh]);
 
   return (
     <div className="h-full w-full flex flex-col gap-4 items-center">
@@ -68,9 +80,15 @@ export default function Home() {
       </div>
 
       <footer className={`${footer}`}>
-        <Link href={`/decks/create/`} className={`${button}`}>
+        {showCreateDeck && (
+          <CreateDeck
+            handleShowCreateDeck={handleShowCreateDeck}
+            toggleRefresh={toggleRefresh}
+          />
+        )}
+        <button className={button} onClick={() => setShowCreateDeck(true)}>
           Create Deck
-        </Link>
+        </button>
       </footer>
     </div>
   );
