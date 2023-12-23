@@ -58,31 +58,47 @@ class Problem:
 ### nextjs
 
 - run server
-  - npm run dev
+
+```
+npm run dev
+```
 
 ### primsa
 
 - initialize prisma
 
-  - npx prisma init
+```
+npx prisma init
+```
 
 - create schema
 
-  - npx prisma generate
+```
+npx prisma generate
+```
 
 - migrate
 
-  - npx prisma migrate dev
-  - npx prisma migrate dev --name <name>
-  - npx primsa migrate reset
+```
+npx prisma migrate dev
+npx prisma migrate dev --name <name>
+npx primsa migrate reset
+```
 
 - create db from schema
 
-  - npx prisma db pull
+```
+npx prisma db pull
+```
 
 - update db from current schema
 
-  - npx prisma db push
+```
+npx prisma db push
+```
 
 - add, put, del records on GUI
-  - npx primsa studio
+
+```
+npx primsa studio
+```
