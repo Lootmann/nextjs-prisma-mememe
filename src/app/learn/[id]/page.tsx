@@ -10,6 +10,7 @@ import React from "react";
 
 const header = `
     w-full flex justify-center px-4 py-1 gap-4
+    text-xl
     bg-slate-800
     border rounded-md`;
 
@@ -24,12 +25,9 @@ const footer = `
     border rounded-md`;
 
 export default function Page() {
-  const [problem, setProblem] = React.useState<ProblemLearnType>({
-    id: 0,
-    front: "",
-    back: "",
-    deckId: 0,
-  });
+  const [problem, setProblem] = React.useState<ProblemLearnType | undefined>(
+    undefined
+  );
 
   // get url params '/learn/:deckId'
   const params = useParams();
@@ -42,16 +40,17 @@ export default function Page() {
     const fetchProblem = async () => {
       const options = {
         method: "GET",
-        "Content-Type": "application/json",
+        headers: {
+          "Content-Type": "application/json",
+        },
       };
 
       const resp = await fetch(`/api/problems/${params.id}/random`, options);
+      const data = await resp.json();
 
       if (!resp.ok) {
-        // fixme: validation error
+        return;
       }
-
-      const data = await resp.json();
       setProblem(data);
     };
 
@@ -65,22 +64,31 @@ export default function Page() {
         <button>Hoge</button>
       </header>
 
-      <div className={`${statement}`} onClick={() => setIsFlip(true)}>
-        {problem && (
-          <>
+      {problem == undefined ? (
+        <>
+          <p className="text-2xl ">No Problem D:</p>
+          <p className="text-2xl">Create Problems :^)</p>
+          <Link
+            href={`/add/`}
+            className="border px-2 text-xl bg-neutral-200 text-neutral-900 rounded-md"
+          >
+            Create New Problem
+          </Link>
+        </>
+      ) : (
+        <>
+          <div className={`${statement}`} onClick={() => setIsFlip(true)}>
             <p className="text-xl">{problem.front}</p>
-            {isFlip && (
-              <>
-                <p className="text-xl">{problem.back}</p>
-              </>
-            )}
-          </>
-        )}
-      </div>
+            {isFlip && <p className="text-xl">{problem.back}</p>}
+          </div>
 
-      <footer className={`${footer}`}>
-        <Link href={`/learn/${problem.deckId}`}>Next</Link>
-      </footer>
+          <footer className={`${footer}`}>
+            <Link href={`/learn/${problem.deckId}`} className="text-xl">
+              Next
+            </Link>
+          </footer>
+        </>
+      )}
     </div>
   );
 }
