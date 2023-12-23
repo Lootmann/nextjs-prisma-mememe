@@ -12,5 +12,13 @@ type Params = {
 
 export async function GET(req: NextRequest, { params }: Params) {
   const deck = await getRandomProblemByDeck(params.id);
+
+  if (deck == undefined) {
+    return NextResponse.json(
+      { message: "deck has no problems" },
+      { status: 404 }
+    );
+  }
+
   return NextResponse.json(deck);
 }
