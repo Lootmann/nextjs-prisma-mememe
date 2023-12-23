@@ -1,11 +1,10 @@
-// note: popup Create Deck Component
-
-import { DeckCreateType, DeckType } from "@/types/Deck";
+/**
+ * popup Create Deck Component
+ */
+import { DeckCreateType } from "@/types/Deck";
 import { SubmitHandler, useForm } from "react-hook-form";
 
-/**
- * if you click outside the form, remove entire form.
- */
+// if you click outside the form, remove entier form
 type Props = {
   handleShowCreateDeck: () => void;
   toggleRefresh: () => void;
@@ -65,7 +64,9 @@ export function CreateDeck(props: Props) {
         <h2 className="text-xl underline underline-offset-4">Create Deck</h2>
 
         {errors.title ? (
-          <p className="text-red-500">Empty is Not Allowed ヽ(｀Д´#)ﾉ</p>
+          <p className="text-red-500">
+            Empty is Not Allowed ヽ&#40;｀Д´#&#41;ﾉ
+          </p>
         ) : (
           <p>
             Input Deck title. Empty is not allowed.
