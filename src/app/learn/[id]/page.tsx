@@ -3,7 +3,7 @@
  */
 "use client";
 
-import { ProblemLearnType } from "@/app/types/Problem";
+import { ProblemLearnType } from "@/types/Problem";
 import Link from "next/link";
 import { useParams } from "next/navigation";
 import React from "react";

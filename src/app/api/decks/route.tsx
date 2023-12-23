@@ -1,4 +1,4 @@
-import { createDeck, getDecks } from "@/app/crud/deck";
+import { createDeck, getDecks } from "@/crud/deck";
 import { NextRequest, NextResponse } from "next/server";
 
 export async function GET(req: NextRequest) {
