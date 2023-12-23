@@ -104,9 +104,12 @@ npx primsa studio
 ## TODO
 
 - Decks
+
   - [x] change 'Create Deck Component' from showing another component to alert-ish message
 
 - Problems
-  - [ ] Problem search form
+
+  - [ ] Problem search form in '/problmes/pages.tsx'
   - [ ] Edit a problem in '/problems/page.tsx'
-  - [ ] Remove edit link button in problems table
+  - [ ] Remove edit link button in problem lists table
+  - [ ] Add Pagination to '/problmes/page.tsx' table
