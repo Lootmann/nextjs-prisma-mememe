@@ -13,18 +13,27 @@ export const metadata: Metadata = {
   },
 };
 
+const html = `
+  h-full w-full
+  bg-neutral-900 text-neutral-200`;
+
+const body = `
+  h-full w-full
+  flex flex-col`;
+
+const main = `
+  px-20 py-4 h-full w-full`;
+
 export default function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className="h-full w-full">
-      <body
-        className={`${inter.className} antialiased flex flex-col h-full w-full`}
-      >
+    <html lang="en" className={html}>
+      <body className={`${inter.className} antialiased ${body}`}>
         <Header />
-        <main className="p-4 h-full w-full">{children}</main>
+        <main className={main}>{children}</main>
       </body>
     </html>
   );
