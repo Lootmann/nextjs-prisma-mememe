@@ -40,12 +40,22 @@ export const createProblem = async (
   });
 };
 
-export const putProblem = async (id: string, front: string, back: string) => {
+export const updateProblem = async (
+  id: string,
+  front: string,
+  back: string
+) => {
   return await prisma.problem.update({
     where: { id: Number(id) },
     data: {
       front: front,
       back: back,
     },
+  });
+};
+
+export const deleteProblem = async (id: string) => {
+  return await prisma.problem.delete({
+    where: { id: Number(id) },
   });
 };

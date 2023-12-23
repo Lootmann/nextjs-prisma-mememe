@@ -1,10 +1,13 @@
-import { getDeckById, updateDeck } from "@/crud/deck";
+import { deleteDeck, getDeckById, updateDeck } from "@/crud/deck";
 import { NextRequest, NextResponse } from "next/server";
 
-export async function GET(
-  req: NextRequest,
-  { params }: { params: { id: string } }
-) {
+type Params = {
+  params: {
+    id: string;
+  };
+};
+
+export async function GET(req: NextRequest, { params }: Params) {
   const deck = await getDeckById(Number(params.id));
   return NextResponse.json(deck);
 }
@@ -12,5 +15,10 @@ export async function GET(
 export async function PUT(req: NextRequest) {
   const { id, title } = await req.json();
   const res = await updateDeck(id, title);
+  return NextResponse.json(res);
+}
+
+export async function DEL(req: NextRequest, { params }: Params) {
+  const res = await deleteDeck(params.id);
   return NextResponse.json(res);
 }
