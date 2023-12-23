@@ -1,13 +1,16 @@
 /**
  * api/problems/[id]
  */
-import { getProblemById, putProblem } from "@/crud/problem";
+import { deleteProblem, getProblemById, updateProblem } from "@/crud/problem";
 import { NextRequest, NextResponse } from "next/server";
 
-export async function GET(
-  req: NextRequest,
-  { params }: { params: { id: string } }
-) {
+type Params = {
+  params: {
+    id: string;
+  };
+};
+
+export async function GET(req: NextRequest, { params }: Params) {
   const deck = await getProblemById(params.id);
 
   return NextResponse.json(deck);
@@ -15,7 +18,7 @@ export async function GET(
 
 export async function PUT(req: NextRequest) {
   const { id, front, back } = await req.json();
-  const updated = await putProblem(id, front, back);
+  const updated = await updateProblem(id, front, back);
 
   return NextResponse.json(updated);
 }
