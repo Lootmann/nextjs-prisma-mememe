@@ -1,7 +1,7 @@
 /**
  * api/problems/[id]/random
  */
-import { getRandomProblemByDeck } from "@/app/crud/problem";
+import { getRandomProblemByDeck } from "@/crud/problem";
 import { NextRequest, NextResponse } from "next/server";
 
 export async function GET(

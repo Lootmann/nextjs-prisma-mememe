@@ -1,7 +1,7 @@
 /**
  * api/problems/[id]
  */
-import { getProblemById, putProblem } from "@/app/crud/problem";
+import { getProblemById, putProblem } from "@/crud/problem";
 import { NextRequest, NextResponse } from "next/server";
 
 export async function GET(

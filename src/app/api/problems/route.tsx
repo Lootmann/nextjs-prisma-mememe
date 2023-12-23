@@ -1,4 +1,4 @@
-import { createProblem, getProblems } from "@/app/crud/problem";
+import { createProblem, getProblems } from "@/crud/problem";
 import { PrismaClient } from "@prisma/client";
 import { NextRequest, NextResponse } from "next/server";
 
