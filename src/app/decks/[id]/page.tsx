@@ -1,6 +1,6 @@
 "use client";
 
-import { DeckType, DeckUpdateType } from "@/app/types/Deck";
+import { DeckType, DeckUpdateType } from "@/types/Deck";
 import React from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 

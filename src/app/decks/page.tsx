@@ -5,7 +5,7 @@
 
 import React from "react";
 import Link from "next/link";
-import { DeckType } from "../types/Deck";
+import { DeckType } from "../../types/Deck";
 
 const inner = `py-4 px-8
   h-full w-full flex flex-col flex-1 grow items-stretch

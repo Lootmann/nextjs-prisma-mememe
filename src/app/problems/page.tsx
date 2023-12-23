@@ -4,7 +4,7 @@
 "use client";
 
 import React from "react";
-import { ProblemType } from "../types/Problem";
+import { ProblemType } from "../../types/Problem";
 import Link from "next/link";
 
 const left = `

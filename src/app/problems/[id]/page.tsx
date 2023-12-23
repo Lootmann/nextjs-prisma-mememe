@@ -1,6 +1,6 @@
 "use client";
 
-import { ProblemUpdateType } from "@/app/types/Problem";
+import { ProblemUpdateType } from "@/types/Problem";
 import { useParams } from "next/navigation";
 import React from "react";
 import { SubmitHandler, useForm } from "react-hook-form";

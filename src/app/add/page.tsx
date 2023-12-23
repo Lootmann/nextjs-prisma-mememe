@@ -4,9 +4,9 @@
 "use client";
 
 import React from "react";
-import { DeckType } from "../types/Deck";
+import { DeckType } from "../../types/Deck";
 import { SubmitHandler, useForm } from "react-hook-form";
-import { ProblemInputType } from "../types/Problem";
+import { ProblemInputType } from "../../types/Problem";
 
 const field = `flex gap-4`;
 const label = `px-2 py-1 w-18`;
