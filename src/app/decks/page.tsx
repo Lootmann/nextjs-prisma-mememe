@@ -21,7 +21,7 @@ const link = `
   hover:bg-sky-300 hover:text-neutral-900 rounded-md duration-200`;
 
 const footer = `py-4 px-8
-  w-full flex gap-4
+  w-full flex gap-4 justify-center
   border border-neutral-200 rounded-md`;
 
 const button = `p-2 text-xl text-bold
@@ -30,7 +30,7 @@ const button = `p-2 text-xl text-bold
 
 export default function Home() {
   const [decks, setDecks] = React.useState<DeckType[]>([]);
-  const [showCreateDeck, setShowCreateDeck] = React.useState<boolean>(true);
+  const [showCreateDeck, setShowCreateDeck] = React.useState<boolean>(false);
   const [refresh, setRefresh] = React.useState<boolean>(false);
 
   const toggleRefresh = () => {
