@@ -22,3 +22,9 @@ export async function PUT(req: NextRequest) {
 
   return NextResponse.json(updated);
 }
+
+export async function DEL(req: NextRequest, { params }: Params) {
+  const del = await deleteProblem(params.id);
+
+  return NextResponse.json(del);
+}
