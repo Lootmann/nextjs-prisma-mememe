@@ -7,7 +7,7 @@ import { SubmitHandler, useForm } from "react-hook-form";
 
 const table_row = `border px-2 py-1`;
 
-export default function Page({ children }: { children: React.ReactDOM }) {
+export default function Page() {
   const [decks, setDecks] = React.useState<DeckType[]>([]);
   const [refresh, setRefresh] = React.useState<boolean>(false);
   const { register, handleSubmit, reset } = useForm<DeckType>();
@@ -45,6 +45,15 @@ export default function Page({ children }: { children: React.ReactDOM }) {
     fetchDecks();
   }, [refresh, reset]);
 
+  const title = `
+    pl-2 bg-slate-200 text-slate-800 rounded-sm`;
+
+  const createButton = `
+    border rounded-sm outline-none
+    hover:bg-green-400 hover:text-neutral-900 hover:border-green-400
+    focus:bg-green-400 focus:text-neutral-900 focus:border-green-400
+    duration-200`;
+
   return (
     <div className="h-full w-full flex flex-col gap-4 text-xl">
       <div className="p-2 border rounded-md flex flex-col gap-4">
@@ -52,21 +61,17 @@ export default function Page({ children }: { children: React.ReactDOM }) {
 
         <form
           onSubmit={handleSubmit(onSubmit)}
-          className="flex flex-col gap-4 text-slate-100"
+          className="py-2 flex flex-col gap-6 text-slate-100"
         >
           <input
             type="text"
             {...register("title")}
             placeholder="Title"
             autoComplete="off"
-            className="pl-2 bg-slate-900 rounded-sm"
+            className={title}
           />
 
-          <input
-            type="submit"
-            value="Create"
-            className="bg-slate-700 rounded-sm"
-          />
+          <input type="submit" value="Create" className={createButton} />
         </form>
       </div>
 
