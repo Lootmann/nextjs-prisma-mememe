@@ -29,3 +29,9 @@ export const updateDeck = async (deckId: string, title: string) => {
     },
   });
 };
+
+export const deleteDeck = async (deckId: string) => {
+  return await prisma.deck.delete({
+    where: { id: Number(deckId) },
+  });
+};
