@@ -11,14 +11,14 @@ show problem, answer it.
   - [x] GET /problems/:problemId
   - [x] POST /problems
   - [x] PUT /problems/:problemId
-  - [ ] DEL /problems/:problemId
+  - [x] DEL /problems/:problemId
 
 - /decks
   - [x] GET /decks
   - [x] GET /decks/:deckId
   - [x] POST /decks
   - [x] PUT /decks/:deckId
-  - [ ] DEL /decks/:deckId
+  - [x] DEL /decks/:deckId
 
 ## Component URLs
 
@@ -102,3 +102,7 @@ npx prisma db push
 ```
 npx primsa studio
 ```
+
+## TODO
+
+- [ ] change 'Create Deck Component' from showing another component to alert-ish message
