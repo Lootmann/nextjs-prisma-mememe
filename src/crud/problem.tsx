@@ -18,6 +18,7 @@ export const getRandomProblemByDeck = async (deckId: string) => {
     select: { problems: true },
   });
 
+  // fixme: validation 'prisma.deck.findFirst' returns null
   if (deck) {
     const idx = randomIdx(deck.problems.length);
     return deck.problems[idx];
