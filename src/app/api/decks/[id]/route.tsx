@@ -1,7 +1,5 @@
-import { PrismaClient } from "@prisma/client";
+import { getDeckById, updateDeck } from "@/app/crud/deck";
 import { NextRequest, NextResponse } from "next/server";
-
-const prisma = new PrismaClient();
 
 export async function GET(
   req: NextRequest,
@@ -11,6 +9,8 @@ export async function GET(
   return NextResponse.json(deck);
 }
 
-const getDeckById = async (deckId: number) => {
-  return await prisma.deck.findFirst({ where: { id: deckId } });
-};
+export async function PUT(req: NextRequest) {
+  const { id, title } = await req.json();
+  const res = await updateDeck(id, title);
+  return NextResponse.json(res);
+}

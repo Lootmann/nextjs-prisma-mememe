@@ -1,7 +1,14 @@
 import { ProblemType } from "./Problem";
 
-export type DeckType = {
-  id: number;
+export type DeckBase = {
   title: string;
+};
+
+export type DeckType = DeckBase & {
+  id: number;
   problems: ProblemType[];
+};
+
+export type DeckUpdateType = DeckBase & {
+  id: number;
 };
