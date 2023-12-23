@@ -9,6 +9,8 @@ export type DeckType = DeckBase & {
   problems: ProblemType[];
 };
 
+export type DeckCreateType = DeckBase & {};
+
 export type DeckUpdateType = DeckBase & {
   id: number;
 };
