@@ -15,6 +15,10 @@ const deck_row = `text-xl px-2 py-1
   flex gap-4
   hover:bg-stone-800 rounded-md`;
 
+const link = `
+  px-1
+  hover:bg-sky-300 hover:text-neutral-900 rounded-md duration-200`;
+
 const footer = `py-4 px-8
   w-full flex gap-4
   border border-neutral-200 rounded-md`;
@@ -55,7 +59,9 @@ export default function Home() {
               {deck.title}
             </Link>
             <p>problems</p>
-            <p>edit</p>
+            <Link href={`/decks/${deck.id}`} className={`${link}`}>
+              edit
+            </Link>
             <p>delete</p>
           </div>
         ))}
