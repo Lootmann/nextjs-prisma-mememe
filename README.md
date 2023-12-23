@@ -25,13 +25,11 @@ show problem, answer it.
 ```
 /problems
 /problems/:problemId
-/problems/create
 
 /decks
 /decks/:deckId
-/decks/create
 
-/add
+/add - add problem
 
 /learn/:deckId - show a random problem from :deckId Deck
 ```
@@ -105,4 +103,9 @@ npx primsa studio
 
 ## TODO
 
-- [ ] change 'Create Deck Component' from showing another component to alert-ish message
+- Decks
+  - [x] change 'Create Deck Component' from showing another component to alert-ish message
+- Problems
+  - [ ] Problem search form
+  - [ ] Edit a problem in '/problems/page.tsx'
+  - [ ] Remove edit link button in problems table
