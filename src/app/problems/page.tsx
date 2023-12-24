@@ -5,6 +5,7 @@
 
 import React from "react";
 import { ProblemType } from "../../types/Problem";
+import { UpdateProblem } from "@/components/problems/UpdateProblem";
 
 const right = `
   text-base
@@ -23,15 +24,18 @@ export default function Page() {
   const [problems, setProblems] = React.useState<ProblemType[]>([]);
   const [problem, setProblem] = React.useState<PType>({
     id: 0,
-    front: ":^)",
-    back: ":^)",
+    front: "",
+    back: "",
   });
+  const [refresh, setRefresh] = React.useState<boolean>(false);
 
   React.useEffect(() => {
     const fetchProblems = async () => {
       const options = {
         method: "GET",
-        "Content-Type": "application/json",
+        headers: {
+          "Content-Type": "application/json",
+        },
       };
 
       const resp = await fetch("/api/problems", options);
@@ -42,10 +46,16 @@ export default function Page() {
       }
 
       setProblems(data);
+
+      if (problem.id == 0) {
+        setProblem(data[0]);
+      } else {
+        setProblem(data[problem.id - 1]);
+      }
     };
 
     fetchProblems();
-  }, []);
+  }, [refresh]);
 
   const handleClick = (problemId: number) => {
     const fetchProblem = async () => {
@@ -66,12 +76,15 @@ export default function Page() {
     fetchProblem();
   };
 
+  // fixme: when update problem, refresh right column(problems table)
   return (
     <div className="h-full w-full flex  gap-4 items-center">
-      <div className={`${left}`}>
-        <p className="border p-2 grow">{problem.front}</p>
-        <p className="border p-2 grow">{problem.back}</p>
-      </div>
+      <UpdateProblem
+        id={problem.id}
+        front={problem.front}
+        back={problem.back}
+        handleRefresh={() => setRefresh(!refresh)}
+      />
 
       <div className={`${right}`}>
         <table className="table-auto">
