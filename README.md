@@ -110,6 +110,6 @@ npx primsa studio
 - Problems
 
   - [ ] Problem search form in '/problmes/pages.tsx'
-  - [ ] Edit a problem in '/problems/page.tsx'
-  - [ ] Remove edit link button in problem lists table
+  - [x] Edit a problem in '/problems/page.tsx'
+  - [x] Remove edit link button in problem lists table
   - [ ] Add Pagination to '/problmes/page.tsx' table
