@@ -22,3 +22,7 @@ export type ProblemLearnType = ProblemBase & {
   id: number;
   deckId: number;
 };
+
+export type ProblemSearchType = {
+  input: string;
+};
