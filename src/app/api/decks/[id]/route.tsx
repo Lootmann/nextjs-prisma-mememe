@@ -18,7 +18,7 @@ export async function PUT(req: NextRequest) {
   return NextResponse.json(res);
 }
 
-export async function DEL(req: NextRequest, { params }: Params) {
+export async function DELETE(req: NextRequest, { params }: Params) {
   const res = await deleteDeck(params.id);
   return NextResponse.json(res);
 }
