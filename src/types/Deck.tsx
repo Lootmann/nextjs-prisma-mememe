@@ -14,3 +14,7 @@ export type DeckCreateType = DeckBase & {};
 export type DeckUpdateType = DeckBase & {
   id: number;
 };
+
+export type DeckDeleteType = {
+  id: number;
+};
