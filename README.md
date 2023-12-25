@@ -114,3 +114,4 @@ npx primsa studio
   - [x] Edit a problem in '/problems/page.tsx'
   - [x] Remove edit link button in problem lists table
   - [ ] Add Pagination to '/problmes/page.tsx' table
+  - [ ] change belonging parent deck
