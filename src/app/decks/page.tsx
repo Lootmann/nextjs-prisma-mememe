@@ -14,7 +14,7 @@ const inner = `py-4 px-8
 
 const deck_row = `text-xl px-2 py-1
   flex gap-4
-  hover:bg-stone-800 rounded-md`;
+  hover:bg-sky-900 rounded-md duration-100`;
 
 const link = `
   px-1
@@ -47,36 +47,44 @@ export default function Home() {
         method: "GET",
         headers: { "Content-Type": "application/json" },
       };
-
       const resp = await fetch("/api/decks", options);
       const data = await resp.json();
 
-      // fixme: validation createDeck
-      if (!resp.ok) {
-        console.log(data);
-      }
-
-      setDecks(data);
+      if (resp.ok) setDecks(data);
+      else setDecks([]);
     };
 
     fetchDecks();
   }, [refresh]);
 
   return (
-    <div className="h-full w-full flex flex-col gap-4 items-center">
+    <div className="h-full w-full px-20 flex flex-col gap-4 items-center">
       <div className={`${inner}`}>
-        {decks.map((deck) => (
-          <div key={deck.id} className={`${deck_row}`}>
-            <Link href={`/learn/${deck.id}`} className="grow">
-              {deck.title}
-            </Link>
-            <p>problems</p>
-            <Link href={`/decks/${deck.id}`} className={`${link}`}>
-              edit
-            </Link>
-            <p>delete</p>
+        {decks.length == 0 ? (
+          <div>
+            <p>
+              No Decks <span className="animate-bounce">D;</span>
+            </p>
           </div>
-        ))}
+        ) : (
+          decks.map((deck) => (
+            <div
+              key={deck.id}
+              className={`${deck_row} even:bg-neutral-900 odd:bg-neutral-800`}
+            >
+              <Link href={`/learn/${deck.id}`} className="grow">
+                {deck.title}({deck.problems.length})
+              </Link>
+
+              <Link href={`/decks/${deck.id}`} className={`${link}`}>
+                edit
+              </Link>
+
+              {/* fixme: delete deck */}
+              <p>delete</p>
+            </div>
+          ))
+        )}
       </div>
 
       <footer className={`${footer}`}>
