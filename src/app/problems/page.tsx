@@ -17,14 +17,11 @@ import React from "react";
 import { ProblemSearchType, ProblemType } from "../../types/Problem";
 import { UpdateProblem } from "@/components/problems/UpdateProblem";
 import { SubmitHandler, useForm } from "react-hook-form";
-import { truncate } from "../util/utils";
+import { Problems } from "@/components/problems/Problems";
 
 const right = `
   text-base
   h-full w-full flex flex-col`;
-
-const table_row = `border text-center`;
-const hover_row = `hover:bg-sky-800`;
 
 type PType = {
   id: number;
@@ -56,17 +53,17 @@ export default function Page() {
   React.useEffect(() => {
     const fetchProblems = async () => {
       const data = await getAllProblems();
-      console.log(data);
+
+      // set all problems right columns
+      setProblems(data);
 
       // set default problem to left textarea
       if (problem.id == 0) {
         setProblem(data[0]);
       } else {
+        // when a problem is clicked, set it to left
         setProblem(data[problem.id - 1]);
       }
-
-      // set all problems right columns
-      setProblems(data);
     };
 
     fetchProblems();
@@ -95,8 +92,6 @@ export default function Page() {
   const { register, handleSubmit } = useForm<ProblemSearchType>();
 
   const handleSearchform: SubmitHandler<ProblemSearchType> = async (data) => {
-    console.log("handleSearchForm", data);
-
     // when empty input, show all problems
     if (data.input == "") {
       const d = await getAllProblems();
@@ -119,7 +114,7 @@ export default function Page() {
 
     const fetched: ProblemType[] = await res.json();
 
-    // no problems
+    // problems not found
     if (fetched.length == undefined) {
       setProblems([]);
       setProblem({ id: 0, front: "D;", back: "D;" });
@@ -155,29 +150,7 @@ export default function Page() {
         {problems.length == 0 ? (
           <p>No Problems :^)</p>
         ) : (
-          <table className="table-fixed w-full">
-            <thead>
-              <tr>
-                <th className={`${table_row} w-16`}>id</th>
-                <th className={`${table_row}`}>Front</th>
-                <th className={`${table_row}`}>Back</th>
-              </tr>
-            </thead>
-
-            <tbody>
-              {problems.map((prob) => (
-                <tr
-                  key={prob.id}
-                  className={hover_row}
-                  onClick={() => handleClick(prob.id)}
-                >
-                  <td className={`${table_row}`}>{prob.id}</td>
-                  <td className={`${table_row}`}>{truncate(prob.front)}</td>
-                  <td className={`${table_row}`}>{truncate(prob.back)}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
+          <Problems problems={problems} handleClick={handleClick} />
         )}
       </div>
     </div>
