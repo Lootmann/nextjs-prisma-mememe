@@ -7,6 +7,7 @@ import React from "react";
 import Link from "next/link";
 import { DeckType } from "../../types/Deck";
 import { CreateDeck } from "@/components/decks/CreateDeck";
+import { DeleteDeck } from "@/components/decks/DeleteDeck";
 
 const inner = `py-4 px-8
   h-full w-full flex flex-col flex-1 grow items-stretch
@@ -16,9 +17,13 @@ const deck_row = `text-xl px-2 py-1
   flex gap-4
   hover:bg-sky-900 rounded-md duration-100`;
 
-const link = `
+const edit_link = `
   px-1
   hover:bg-sky-300 hover:text-neutral-900 rounded-md duration-200`;
+
+const delete_link = `
+  px-1
+  hover:bg-red-300 hover:text-red-900 rounded-md duration-200`;
 
 const footer = `py-4 px-8
   w-full flex gap-4 justify-center
@@ -31,6 +36,7 @@ const button = `p-2 text-xl text-bold
 export default function Home() {
   const [decks, setDecks] = React.useState<DeckType[]>([]);
   const [showCreateDeck, setShowCreateDeck] = React.useState<boolean>(false);
+  const [showDeleteDeck, setShowDeleteDeck] = React.useState<boolean>(false);
   const [refresh, setRefresh] = React.useState<boolean>(false);
 
   const toggleRefresh = () => {
@@ -39,6 +45,10 @@ export default function Home() {
 
   const handleShowCreateDeck = () => {
     setShowCreateDeck(false);
+  };
+
+  const handleShowDeleteDeck = () => {
+    setShowDeleteDeck(false);
   };
 
   React.useEffect(() => {
@@ -76,12 +86,26 @@ export default function Home() {
                 {deck.title}({deck.problems.length})
               </Link>
 
-              <Link href={`/decks/${deck.id}`} className={`${link}`}>
+              <Link href={`/decks/${deck.id}`} className={edit_link}>
                 edit
               </Link>
 
-              {/* fixme: delete deck */}
-              <p>delete</p>
+              {showDeleteDeck && (
+                <DeleteDeck
+                  id={deck.id}
+                  title={deck.title}
+                  handleShowDeleteDeck={handleShowDeleteDeck}
+                  toggleRefresh={toggleRefresh}
+                />
+              )}
+              <button
+                onClick={() => {
+                  setShowDeleteDeck(true);
+                }}
+                className={delete_link}
+              >
+                Delete
+              </button>
             </div>
           ))
         )}
