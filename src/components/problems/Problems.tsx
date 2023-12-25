@@ -25,6 +25,7 @@ export function Problems(props: Props) {
           <th className={`${table_row} w-16`}>id</th>
           <th className={`${table_row}`}>Front</th>
           <th className={`${table_row}`}>Back</th>
+          <th className={`${table_row}`}>Deck</th>
         </tr>
       </thead>
 
@@ -38,6 +39,7 @@ export function Problems(props: Props) {
             <td className={`${table_row}`}>{prob.id}</td>
             <td className={`${table_row}`}>{truncate(prob.front)}</td>
             <td className={`${table_row}`}>{truncate(prob.back)}</td>
+            <td className={`${table_row}`}>{truncate(prob.deck.title)}</td>
           </tr>
         ))}
       </tbody>
