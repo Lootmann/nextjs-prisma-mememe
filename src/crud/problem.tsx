@@ -1,7 +1,7 @@
 import { prisma } from "../lib/prisma";
 
 export const getProblems = async () => {
-  return await prisma.problem.findMany();
+  return await prisma.problem.findMany({ include: { deck: true } });
 };
 
 export const getProblemById = async (problemId: string) => {
