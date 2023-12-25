@@ -106,6 +106,7 @@ npx primsa studio
 - Decks
 
   - [x] change 'Create Deck Component' from showing another component to alert-ish message
+  - [x] Delete deck on '/decks/'
 
 - Problems
 
