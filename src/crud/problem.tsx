@@ -60,3 +60,23 @@ export const deleteProblem = async (id: string) => {
     where: { id: Number(id) },
   });
 };
+
+// filtering some problems that contain input in front or back.
+export const findProblem = async (input: string) => {
+  return await prisma.problem.findMany({
+    where: {
+      OR: [
+        {
+          front: {
+            contains: input,
+          },
+        },
+        {
+          back: {
+            contains: input,
+          },
+        },
+      ],
+    },
+  });
+};
