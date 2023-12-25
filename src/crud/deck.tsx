@@ -1,7 +1,11 @@
 import { prisma } from "../lib/prisma";
 
 export const getDecks = async () => {
-  return await prisma.deck.findMany();
+  return await prisma.deck.findMany({
+    include: {
+      problems: true,
+    },
+  });
 };
 
 export const getDeckById = async (deckId: number) => {
